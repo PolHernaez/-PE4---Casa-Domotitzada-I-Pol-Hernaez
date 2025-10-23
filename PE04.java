@@ -14,9 +14,10 @@ public class PE04 {
     String triarhabitacio ="";
     String onOff ="";
     Scanner entrada = new Scanner(System.in);
-   
+   boolean llumsmenu = true;
     do {
     System.out.println("SELECCIONA LA TEMÀTICA:");
+    System.out.println("(llums/)");
     try {
     cmenu = entrada.nextLine();
     }
@@ -28,6 +29,7 @@ public class PE04 {
     }
     switch (cmenu) {
         case "llums":
+            do {
             System.out.println("Que vols fer?");
             System.out.println("A) Engegar/Apagar a una habitació");
             System.out.println("B) Engegar/Apagar a totes les habitacions");
@@ -47,7 +49,7 @@ public class PE04 {
                 case "a" :
                     do {
                         System.out.println("Amb quina habitació vols interactuar? (escriu exit per sortir)");
-                        System.out.println("Cuina /Menjador /Habitació 1 /Habitació 2 / Habitació 3/ wc");
+                        System.out.println("Cuina /Menjador /Habitacio1 /Habitacio2 / Habitacio3/ wc");
                         try{
                         triarhabitacio = entrada.nextLine();
                         }
@@ -90,13 +92,19 @@ public class PE04 {
                         totesLlums (onOff);
             case "c":
                     veureEstat();
+                    break;
+            case "d":
+                    llumsmenu = false;
                 default:
                     break;
+                        }
             }
-            break;
+            while (llumsmenu);
+
     
         default:
             break;
+
     }
         
     }
@@ -111,24 +119,24 @@ public class PE04 {
         menjador = true;
     } else if (a.equalsIgnoreCase("Menjador") && b.equals("off")) {
         menjador = false;
-    } else if (a.equalsIgnoreCase("Habitació 1") && b.equals("on")) {
+    } else if (a.equalsIgnoreCase("Habitacio1") && b.equals("on")) {
         h1 = true;
-    } else if (a.equalsIgnoreCase("Habitació 1") && b.equals("off")) {
+    } else if (a.equalsIgnoreCase("Habitacio1") && b.equals("off")) {
         h1 = false;
-    } else if (a.equalsIgnoreCase("Habitació 2") && b.equals("on")) {
+    } else if (a.equalsIgnoreCase("Habitacio2") && b.equals("on")) {
         h2 = true;
-    } else if (a.equalsIgnoreCase("Habitació 2") && b.equals("off")) {
+    } else if (a.equalsIgnoreCase("Habitacio2") && b.equals("off")) {
         h2 = false;
-    } else if (a.equalsIgnoreCase("Habitació 3") && b.equals("on")) {
+    } else if (a.equalsIgnoreCase("Habitacio3") && b.equals("on")) {
         h3 = true;
-    } else if (a.equalsIgnoreCase("Habitació 3") && b.equals("off")) {
+    } else if (a.equalsIgnoreCase("Habitacio3") && b.equals("off")) {
         h3 = false;
     } else if (a.equalsIgnoreCase("wc") && b.equals("on")) {
         wc = true;
     } else if (a.equalsIgnoreCase("wc") && b.equals("off")) {
         wc = false;
     }
-    if (a.equalsIgnoreCase("Cuina") || a.equalsIgnoreCase("wc") || a.equalsIgnoreCase("Habitació 1") || a.equalsIgnoreCase("Habitació 2") || a.equalsIgnoreCase("Menjador") || a.equalsIgnoreCase("Habitactó 3")) {
+    if (a.equalsIgnoreCase("Cuina") || a.equalsIgnoreCase("wc") || a.equalsIgnoreCase("Habitacio1") || a.equalsIgnoreCase("Habitacio2") || a.equalsIgnoreCase("Menjador") || a.equalsIgnoreCase("Habitacio3")) {
     if (b.equals("on")){
     b = "encesos";
     
@@ -166,9 +174,9 @@ public class PE04 {
     System.out.println("Estat actual de les llums:");
     System.out.println("Cuina: " + (cuina ? "encesa" : "apagada"));
     System.out.println("Menjador: " + (menjador ? "encesa" : "apagada"));
-    System.out.println("Habitació 1: " + (h1 ? "encesa" : "apagada"));
-    System.out.println("Habitació 2: " + (h2 ? "encesa" : "apagada"));
-    System.out.println("Habitació 3: " + (h3 ? "encesa" : "apagada"));
+    System.out.println("Habitació1: " + (h1 ? "encesa" : "apagada"));
+    System.out.println("Habitació2: " + (h2 ? "encesa" : "apagada"));
+    System.out.println("Habitaci03: " + (h3 ? "encesa" : "apagada"));
     System.out.println("WC: " + (wc ? "encesa" : "apagada"));
 }
 
