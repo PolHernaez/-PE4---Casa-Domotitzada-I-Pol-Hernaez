@@ -1,12 +1,12 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class PE04 {
-    static boolean cuina;
-    static boolean h1;
-    static boolean h2;
-    static boolean wc;
-    static boolean menjador;
-    static boolean h3;
+    static boolean cuina = false;
+    static boolean h1 = false;
+    static boolean h2 = false;
+    static boolean wc = false;
+    static boolean menjador= false;
+    static boolean h3 = false;
     public static void main(String[] args) {
     boolean menu = true;
     boolean exitllums = false;
@@ -15,7 +15,6 @@ public class PE04 {
     String onOff ="";
     Scanner entrada = new Scanner(System.in);
    
-    boolean totesLlums = false;
     do {
     System.out.println("SELECCIONA LA TEMÀTICA:");
     try {
@@ -57,7 +56,11 @@ public class PE04 {
                         }
                         catch (Exception e) {
                         System.out.println("Error inesperat");
-                        }  
+                        } 
+                        if (triarhabitacio.equals("exit")) {
+                            exitllums = true;
+                            break;
+                        }
                         System.out.println("Vols engegar o apagar? (on/off)");
                         try{
                         onOff = entrada.nextLine();
@@ -70,8 +73,9 @@ public class PE04 {
                         }  
                         unallum(triarhabitacio, onOff);
                         
+                        
                     }
-                    while (exitllums);
+                    while (!exitllums);
                 break;
             case "b": 
                         System.out.println("Vols engegar o apagar? (on/off)");
@@ -84,6 +88,8 @@ public class PE04 {
                         catch (Exception e) {
                         System.out.println("Error inesperat");}
                         totesLlums (onOff);
+            case "c":
+                    veureEstat();
                 default:
                     break;
             }
@@ -97,20 +103,46 @@ public class PE04 {
     while (menu);    
     }
     public static void unallum(String a, String b) {
-    if (a.equals("Cuina") || a.equals("wc") || a.equals("Habitació 1") || a.equals("Habitació 2") || a.equals("Menjador") || a.equals("Habitactó 3")) {
+    if (a.equalsIgnoreCase("Cuina") && b.equals("on")) {
+        cuina = true;
+    } else if (a.equalsIgnoreCase("Cuina") && b.equals("off")) {
+        cuina = false;
+    } else if (a.equalsIgnoreCase("Menjador") && b.equals("on")) {
+        menjador = true;
+    } else if (a.equalsIgnoreCase("Menjador") && b.equals("off")) {
+        menjador = false;
+    } else if (a.equalsIgnoreCase("Habitació 1") && b.equals("on")) {
+        h1 = true;
+    } else if (a.equalsIgnoreCase("Habitació 1") && b.equals("off")) {
+        h1 = false;
+    } else if (a.equalsIgnoreCase("Habitació 2") && b.equals("on")) {
+        h2 = true;
+    } else if (a.equalsIgnoreCase("Habitació 2") && b.equals("off")) {
+        h2 = false;
+    } else if (a.equalsIgnoreCase("Habitació 3") && b.equals("on")) {
+        h3 = true;
+    } else if (a.equalsIgnoreCase("Habitació 3") && b.equals("off")) {
+        h3 = false;
+    } else if (a.equalsIgnoreCase("wc") && b.equals("on")) {
+        wc = true;
+    } else if (a.equalsIgnoreCase("wc") && b.equals("off")) {
+        wc = false;
+    }
+    if (a.equalsIgnoreCase("Cuina") || a.equalsIgnoreCase("wc") || a.equalsIgnoreCase("Habitació 1") || a.equalsIgnoreCase("Habitació 2") || a.equalsIgnoreCase("Menjador") || a.equalsIgnoreCase("Habitactó 3")) {
     if (b.equals("on")){
     b = "encesos";
+    
     }
     if (b.equals("off")){
     b = "apagats";
     }
-    System.out.println("L'habitació " + a + " ara te les llums " + b + ".");
+    System.out.println("L'habitació " + a + " ara te els llums " + b + ".");
     }
     else {
         System.out.println("Introdueix un paràmetre vàlid");
     }
-    }
     
+}
     public static void totesLlums(String status){
         if (status.equals("on")){
         cuina = true;
@@ -129,8 +161,16 @@ public class PE04 {
         h2 = false;
         wc = false;
         System.out.println("Totes les llums s'han apagat correctament");
-    }
-    }
+    }}
+    public static void veureEstat() {
+    System.out.println("Estat actual de les llums:");
+    System.out.println("Cuina: " + (cuina ? "encesa" : "apagada"));
+    System.out.println("Menjador: " + (menjador ? "encesa" : "apagada"));
+    System.out.println("Habitació 1: " + (h1 ? "encesa" : "apagada"));
+    System.out.println("Habitació 2: " + (h2 ? "encesa" : "apagada"));
+    System.out.println("Habitació 3: " + (h3 ? "encesa" : "apagada"));
+    System.out.println("WC: " + (wc ? "encesa" : "apagada"));
+}
 
 
     }
