@@ -54,7 +54,7 @@ public class PE04 {
             System.out.println("Error inesperat");
             }
             switch (menullums) {
-                case "a" :
+            case "a" :
                     do {
                         exitllums = false;
                         chooseRoom();
@@ -103,15 +103,17 @@ public class PE04 {
             while (llumsmenu);
             break;
         case "musica":
+        
             musica = true;
             do {
+                 sortirHabitacio = false;
             chooseRoom();
             if (triarhabitacio.equals("exit")) {
                             musica = false;
                             break;
             }
             do {
-                sortirHabitacio = false;
+               
             System.out.println("Que vols reproduir?");
             System.out.println("A) Reproduir una cançó en concret");
             System.out.println("B) Reproduir un àlbum en concret");
@@ -164,6 +166,7 @@ public class PE04 {
             while (musica);
              
         default:
+        System.out.println("Escriu una opció vàlida");
             break;
 
     }
