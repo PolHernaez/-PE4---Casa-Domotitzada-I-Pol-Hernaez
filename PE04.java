@@ -7,17 +7,24 @@ public class PE04 {
     static boolean wc = false;
     static boolean menjador= false;
     static boolean h3 = false;
+    static String triarhabitacio ="";
+    static Scanner entrada = new Scanner(System.in);
+    static boolean exitllums = false;
+    static String reprodueix;
+    static String elementReproduir;
+    static boolean sortirHabitacio = false;
+    static String queReproduir;
     public static void main(String[] args) {
     boolean menu = true;
-    boolean exitllums = false;
+    
     String cmenu ="", menullums ="";
-    String triarhabitacio ="";
+    
     String onOff ="";
-    Scanner entrada = new Scanner(System.in);
+   boolean musica = true;
    boolean llumsmenu = true;
     do {
     System.out.println("SELECCIONA LA TEMÀTICA:");
-    System.out.println("(llums/)");
+    System.out.println("(llums/musica)");
     try {
     cmenu = entrada.nextLine();
     }
@@ -30,7 +37,8 @@ public class PE04 {
     switch (cmenu) {
         case "llums":
             do {
-            System.out.println("Que vols fer?");
+            llumsmenu = true;
+            System.out.println("Què vols fer?");
             System.out.println("A) Engegar/Apagar a una habitació");
             System.out.println("B) Engegar/Apagar a totes les habitacions");
             System.out.println("C) Veure l'estat de les llums");
@@ -48,21 +56,13 @@ public class PE04 {
             switch (menullums) {
                 case "a" :
                     do {
-                        System.out.println("Amb quina habitació vols interactuar? (escriu exit per sortir)");
-                        System.out.println("Cuina /Menjador /Habitacio1 /Habitacio2 / Habitacio3/ wc");
-                        try{
-                        triarhabitacio = entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        } 
-                        if (triarhabitacio.equals("exit")) {
+                        exitllums = false;
+                        chooseRoom();
+                         if (triarhabitacio.equals("exit")) {
                             exitllums = true;
                             break;
                         }
+                        
                         System.out.println("Vols engegar o apagar? (on/off)");
                         try{
                         onOff = entrada.nextLine();
@@ -90,6 +90,7 @@ public class PE04 {
                         catch (Exception e) {
                         System.out.println("Error inesperat");}
                         totesLlums (onOff);
+                        break;
             case "c":
                     veureEstat();
                     break;
@@ -100,8 +101,68 @@ public class PE04 {
                         }
             }
             while (llumsmenu);
+            break;
+        case "musica":
+            musica = true;
+            do {
+            chooseRoom();
+            if (triarhabitacio.equals("exit")) {
+                            musica = false;
+                            break;
+            }
+            do {
+                sortirHabitacio = false;
+            System.out.println("Que vols reproduir?");
+            System.out.println("A) Reproduir una cançó en concret");
+            System.out.println("B) Reproduir un àlbum en concret");
+            System.out.println("C) Reproduir un artista en concret");
+            System.out.println("D) Reproduir música aleatòria");
+            System.out.println("E) Tornar enrere");
+            System.out.println("(a/b/c/d/e)");
+            try {
+            reprodueix = entrada.nextLine();
+            }
+            catch (InputMismatchException e) {
+                        System.out.println("Introdueix valors vàlids");
+                        }
+                        catch (Exception e) {
+                        System.out.println("Error inesperat");
+                        } 
+                switch (reprodueix) {
+                    case "a":
+                        
+                        System.out.println("Quina cançó vols que soni?");
+                        queReproduir = "la cançó";
+                        menuMusica (queReproduir);
+                        break;
+                    case "e":
+                    sortirHabitacio = true;
+                    break;
 
-    
+                    case "b":
+                    System.out.println("Quin àlbum vols que soni?");
+                        queReproduir = "l'àlbum";
+                    menuMusica (queReproduir);
+                        break;
+                    case "c":
+                    System.out.println("Quin artista vols escoltar?");
+                    queReproduir = "l'artista";
+                    menuMusica (queReproduir);
+                    break;
+                    case "d":
+                    System.out.println("S'està reproduint música aleatòria a " + triarhabitacio);
+                    break;
+
+                    default:
+                    System.out.println("Escriu una lletra vàlida");
+                        break;
+                }
+            } while (!sortirHabitacio) ;
+                
+            
+            }
+            while (musica);
+             
         default:
             break;
 
@@ -159,7 +220,7 @@ public class PE04 {
         h1 = true;
         h2 = true;
         wc = true;
-        System.out.println("Totes les llums s'han encés correctament");
+        System.out.println("Totes les llums s'han encès correctament");
     }
     else if (status.equals("off")){
         cuina = false;
@@ -171,15 +232,70 @@ public class PE04 {
         System.out.println("Totes les llums s'han apagat correctament");
     }}
     public static void veureEstat() {
-    System.out.println("Estat actual de les llums:");
-    System.out.println("Cuina: " + (cuina ? "encesa" : "apagada"));
-    System.out.println("Menjador: " + (menjador ? "encesa" : "apagada"));
-    System.out.println("Habitació1: " + (h1 ? "encesa" : "apagada"));
-    System.out.println("Habitació2: " + (h2 ? "encesa" : "apagada"));
-    System.out.println("Habitaci03: " + (h3 ? "encesa" : "apagada"));
-    System.out.println("WC: " + (wc ? "encesa" : "apagada"));
+    if (cuina) {
+    System.out.println("Cuina: encesa");
+    } else {
+    System.out.println("Cuina: apagada");
+    }
+
+    if (menjador) {
+    System.out.println("Menjador: encesa");
+    } else {
+    System.out.println("Menjador: apagada");
+    }
+
+    if (h1) {
+    System.out.println("Habitació1: encesa");
+    } else {
+    System.out.println("Habitació1: apagada");
+    }
+
+    if (h2) {
+    System.out.println("Habitació2: encesa");
+    } else {
+    System.out.println("Habitació2: apagada");
+    }
+
+    if (h3) {
+    System.out.println("Habitació3: encesa");
+    } else {
+    System.out.println("Habitació3: apagada");
+    }
+
+    if (wc) {
+    System.out.println("WC: encesa");
+    } else {
+    System.out.println("WC: apagada");
+    }
+
 }
-
-
+    public static void chooseRoom () {
+        System.out.println("Amb quina habitació vols interactuar? (escriu exit per sortir)");
+                        System.out.println("Cuina /Menjador /Habitacio1 /Habitacio2 / Habitacio3/ wc");
+                        try{
+                        triarhabitacio = entrada.nextLine();
+                        }
+                        catch (InputMismatchException e) {
+                        System.out.println("Introdueix valors vàlids");
+                        }
+                        catch (Exception e) {
+                        System.out.println("Error inesperat");
+                        } 
+                        
+                        
+    }
+    public static void menuMusica (String a) {
+        try {
+                        elementReproduir= entrada.nextLine();
+                        }
+                        catch (InputMismatchException e) {
+                        System.out.println("Introdueix valors vàlids");
+                        }
+                        catch (Exception e) {
+                        System.out.println("Error inesperat");
+                        } 
+                        System.out.println();
+                        System.out.println("Està sonant " + a + " "+ elementReproduir + " a l'habitació "+ triarhabitacio);
+    }
     }
 
