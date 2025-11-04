@@ -30,6 +30,9 @@ public class PE04 {
     static int tempH2 = 23;
     static int tempH3 = 18;
     static int novaTemp = 0;
+    static int tempsMins = 0;
+    static int tempsHores = 0;
+    static int tempsSegons = 0;
     public static void main(String[] args) {
     boolean menu = true;
     
@@ -200,7 +203,8 @@ public class PE04 {
                System.out.println("Que vols fer?");
             System.out.println("A) Veure l'estat de la sala");
             System.out.println("B) Natejar habitació");
-            System.out.println("C) Enrere");
+            System.out.println("C) Programar temps de nateja per tota la casa");
+            System.out.println("D) Enrere");
             System.out.println("(a/b/c)");
             String ferRoomba = "";
             try{
@@ -221,12 +225,16 @@ public class PE04 {
                 rajolesRoomba(triarhabitacio);
                 recorregutRoomba(rajoles, triarhabitacio);
                 break;
-                case "c":
+                case "d":
                 menuRoomba2 = false;
                 System.out.println();
                 default:
                     break;
-            
+                case "c":
+                
+                        timer();
+                break;
+                
             } 
             } while (menuRoomba2);
             
@@ -581,7 +589,20 @@ public static void canviTemperatura(String nomHabitacio, int tempActual, int nov
 
     System.out.println("La temperatura de " + nomHabitacio + " ha " + pujarBaixar +" de " + tempActual + "ºC a " + novaTemp + "ºC.");
 }
-
+public static void timer() {
+    System.out.print("Itrodueix un temps: ");
+                try {
+                tempsHores = entrada.nextInt();
+                }
+                catch (InputMismatchException e) {
+                        System.out.println("Introdueix valors vàlids");
+                        }
+                        catch (Exception e) {
+                        System.out.println("Error inesperat");
+                        }
+                        
+    
+}
 
 
     
