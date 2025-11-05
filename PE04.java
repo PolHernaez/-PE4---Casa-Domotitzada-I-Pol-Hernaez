@@ -590,7 +590,7 @@ public static void canviTemperatura(String nomHabitacio, int tempActual, int nov
     System.out.println("La temperatura de " + nomHabitacio + " ha " + pujarBaixar +" de " + tempActual + "ºC a " + novaTemp + "ºC.");
 }
 public static void timer() {
-    System.out.print("Itrodueix un temps: ");
+    System.out.print("Itrodueix les hores: ");
                 try {
                 tempsHores = entrada.nextInt();
                 }
@@ -600,13 +600,29 @@ public static void timer() {
                         catch (Exception e) {
                         System.out.println("Error inesperat");
                         }
-                        
-    
-}
+                        System.out.print("Itrodueix els minuts: ");
+                try {
+                tempsMins = entrada.nextInt();
+                }
+                catch (InputMismatchException e) {
+                        System.out.println("Introdueix valors vàlids");
+                        }
+                        catch (Exception e) {
+                        System.out.println("Error inesperat");
+                        }
+                        int hores = 0;
+    for (int i = 0; i < tempsHores; i++){
+        for (int y= 0; y < 60; y++){
+        System.out.println(i + " hores i " + y + " Minuts");
+        }
+    hores++;
+    }
+    for (int y= 0; y <= tempsMins; y++){
+        System.out.println(hores + " hores i " + y + " Minuts");
+        }
 
-
     
-}
+}}
     
     
 
