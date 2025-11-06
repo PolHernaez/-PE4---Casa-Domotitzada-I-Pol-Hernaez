@@ -191,15 +191,10 @@ public class PE04 {
             while (musica);
         case "roomba":
         boolean menuRoomba = true;
-            
-        do    {
-            chooseRoom();
-            if (triarhabitacio.equals("exit")) {
-                            menuRoomba = false;
-                            break;
-            }
-            boolean menuRoomba2 = true;
+        boolean menuRoomba2 = true;    
+                   
             do {
+                menuRoomba2 = false;
                System.out.println("Que vols fer?");
             System.out.println("A) Veure l'estat de la sala");
             System.out.println("B) Natejar habitació");
@@ -218,25 +213,64 @@ public class PE04 {
                         }
             switch (ferRoomba) {
                 case "a":
+                do    {
+            
+            chooseRoom();
+            menuRoomba2 = false;
+            if (triarhabitacio.equals("exit")) {
+                            menuRoomba2 = true;
+                            break;
+            }
+            else if (!menuRoomba2){
                 estatRoomba (triarhabitacio);
+                System.out.println("La sala " + triarhabitacio + " està " + netBrut);
                 System.out.println();
+            }
+            } while (!menuRoomba2);
+            
+                
                     break;
                 case "b":
+                do    {
+            
+            chooseRoom();
+            menuRoomba2 = false;
+            if (triarhabitacio.equals("exit")) {
+                            menuRoomba2 = true;
+                            break;
+            }
+            else if (!menuRoomba2){
                 rajolesRoomba(triarhabitacio);
                 recorregutRoomba(rajoles, triarhabitacio);
+            }
+            } while (!menuRoomba2);
+                
                 break;
                 case "d":
                 menuRoomba2 = false;
                 System.out.println();
                 default:
                     break;
-                case "c":
+                case "c":          
+                        do    {
+            
+            chooseRoom();
+            menuRoomba2 = false;
+            if (triarhabitacio.equals("exit")) {
+                            menuRoomba2 = true;
+                            break;
+            }
+            else if (!menuRoomba2){
+                timer();
                 
-                        timer();
+                rajolesRoomba(triarhabitacio);
+            }
+            } while (!menuRoomba2);
+            menuRoomba2 = true;
                 break;
                 
             } 
-            } while (menuRoomba2);
+            
             
             
         }               
@@ -566,7 +600,7 @@ public static void estatTerra(boolean habitacio) {
         netBrut = "bruta";
     }
 
-    System.out.println("La sala " + triarhabitacio + " està " + netBrut);
+    
     }
 public static void canviTemperatura(String nomHabitacio, int tempActual, int novaTemp) {
     String pujarBaixar = "";
@@ -590,9 +624,12 @@ public static void canviTemperatura(String nomHabitacio, int tempActual, int nov
     System.out.println("La temperatura de " + nomHabitacio + " ha " + pujarBaixar +" de " + tempActual + "ºC a " + novaTemp + "ºC.");
 }
 public static void timer() {
-    System.out.print("Itrodueix les hores: ");
+    boolean errorTemps = false;
+    do {
+        System.out.print("Itrodueix les hores: ");
                 try {
                 tempsHores = entrada.nextInt();
+                entrada.nextLine();
                 }
                 catch (InputMismatchException e) {
                         System.out.println("Introdueix valors vàlids");
@@ -600,9 +637,20 @@ public static void timer() {
                         catch (Exception e) {
                         System.out.println("Error inesperat");
                         }
-                        System.out.print("Itrodueix els minuts: ");
+                    if (tempsHores < 0 || tempsHores > 5) {
+                        System.out.println("Escull entre 0 i 5 hores");
+                        System.out.println();
+                        errorTemps = true;
+                    }
+                    else {
+                        errorTemps = false;
+                    }
+    } while (errorTemps);
+                do {
+                System.out.print("El programa ara dura " + tempsHores + " hores, quants minuts mès vols? ");
                 try {
                 tempsMins = entrada.nextInt();
+                entrada.nextLine();
                 }
                 catch (InputMismatchException e) {
                         System.out.println("Introdueix valors vàlids");
@@ -610,6 +658,15 @@ public static void timer() {
                         catch (Exception e) {
                         System.out.println("Error inesperat");
                         }
+                    if (tempsMins < 0 || tempsMins >= 60) {
+                        System.out.println("Escull entre 0 i 59 minuts");
+                        System.out.println();
+                        errorTemps = true;
+                    }
+                    else {
+                        errorTemps = false;
+                    }    
+                } while (errorTemps);
                         int hores = 0;
     for (int i = 0; i < tempsHores; i++){
         for (int y= 0; y < 60; y++){
