@@ -44,15 +44,21 @@ public class PE04 {
     do {
     System.out.println("SELECCIONA LA TEMÀTICA:");
     System.out.println("(llums/musica/roomba/temperatura)");
-    try {
-    cmenu = entrada.nextLine();
-    }
-    catch (InputMismatchException e) {
+    boolean correcteCmenu = false;
+    do {
+        try {
+            cmenu = entrada.nextLine();
+            correcteCmenu = true;
+        }
+        catch (InputMismatchException e) {
             System.out.println("Introdueix valors vàlids");
-    }
-    catch (Exception e) {
+            entrada.nextLine();
+        }
+        catch (Exception e) {
             System.out.println("Error inesperat");
-    }
+            entrada.nextLine();
+        }
+    } while (!correcteCmenu);
     switch (cmenu) {
         case "llums":
             do {
@@ -83,32 +89,44 @@ public class PE04 {
                         }
                         
                         System.out.println("Vols engegar o apagar? (on/off)");
-                        try{
-                        onOff = entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        }  
+                         boolean correcteOnOff = false;
+                        do {
+                            try {
+                                onOff = entrada.nextLine();
+                                correcteOnOff = true;
+                            }
+                            catch (InputMismatchException e) {
+                                System.out.println("Introdueix valors vàlids");
+                                entrada.nextLine();
+                            }
+                            catch (Exception e) {
+                                System.out.println("Error inesperat");
+                                entrada.nextLine();
+                            }
+                        } while (!correcteOnOff);
+                        
                         unallum(triarhabitacio, onOff);
-                        
-                        
                     }
                     while (!exitllums);
                 break;
             case "b": 
                         System.out.println("Vols engegar o apagar? (on/off)");
-                        try{
-                        onOff = entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");}
-                        totesLlums (onOff);
+                        boolean correcteOnOff2 = false;
+                        do {
+                            try {
+                                onOff = entrada.nextLine();
+                                correcteOnOff2 = true;
+                            }
+                            catch (InputMismatchException e) {
+                                System.out.println("Introdueix valors vàlids");
+                                entrada.nextLine();
+                            }
+                            catch (Exception e) {
+                                System.out.println("Error inesperat");
+                                entrada.nextLine();
+                            }
+                        } while (!correcteOnOff2);
+                        totesLlums(onOff);
                         break;
             case "c":
                     veureEstat();
@@ -141,15 +159,21 @@ public class PE04 {
             System.out.println("E) Pausar la reproducció");
             System.out.println("F) Tornar enrere");
             System.out.println("(a/b/c/d/e/f)");
-            try {
-            reprodueix = entrada.nextLine();
-            }
-            catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        } 
+            boolean correcteReprodueix = false;
+            do {
+                try {
+                    reprodueix = entrada.nextLine();
+                    correcteReprodueix = true;
+                }
+                catch (InputMismatchException e) {
+                    System.out.println("Introdueix valors vàlids");
+                    entrada.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error inesperat");
+                    entrada.nextLine();
+                }
+            } while (!correcteReprodueix);
                 switch (reprodueix) {
                     case "a":
                         
@@ -189,6 +213,7 @@ public class PE04 {
             
             }
             while (musica);
+            break;
         case "roomba":
         boolean menuRoomba = true;
         boolean menuRoomba2 = true;    
@@ -198,19 +223,25 @@ public class PE04 {
                System.out.println("Que vols fer?");
             System.out.println("A) Veure l'estat de la sala");
             System.out.println("B) Natejar habitació");
-            System.out.println("C) Programar temps de nateja per tota la casa");
+            System.out.println("C) Programar temps de nateja a una habitació");
             System.out.println("D) Enrere");
             System.out.println("(a/b/c)");
             String ferRoomba = "";
-            try{
-                        ferRoomba = entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        }
+            boolean correcteFerRoomba = false;
+            do {
+                try {
+                    ferRoomba = entrada.nextLine();
+                    correcteFerRoomba = true;
+                }
+                catch (InputMismatchException e) {
+                    System.out.println("Introdueix valors vàlids");
+                    entrada.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error inesperat");
+                    entrada.nextLine();
+                }
+            } while (!correcteFerRoomba);
             switch (ferRoomba) {
                 case "a":
                 do    {
@@ -248,8 +279,8 @@ public class PE04 {
                 break;
                 case "d":
                 menuRoomba2 = false;
+                menuRoomba = false;
                 System.out.println();
-                default:
                     break;
                 case "c":          
                         do    {
@@ -270,12 +301,12 @@ public class PE04 {
                 break;
                 
             } 
-            
+           
             
             
         }               
         while (menuRoomba);
-        
+        break; 
         case "temperatura":
         boolean menuTemperatura = true;
         do {
@@ -286,15 +317,22 @@ public class PE04 {
         System.out.println("C) Modificar la temperatura de totes les habitacions");
         System.out.println("D) Tornar enrere");
         System.out.print("(a/b/c/d): ");
-            try{
-            ferTemperatura = entrada.nextLine();
+             boolean correcteFerTemperatura = false;
+        do {
+            try {
+                ferTemperatura = entrada.nextLine();
+                correcteFerTemperatura = true;
+                
             }
             catch (InputMismatchException e) {
-            System.out.println("Introdueix valors vàlids");
+                System.out.println("Introdueix valors vàlids");
+                entrada.nextLine();
             }
             catch (Exception e) {
-            System.out.println("Error inesperat");
+                System.out.println("Error inesperat");
+                entrada.nextLine();
             }
+        } while (!correcteFerTemperatura);
             boolean menuTemperatura2 = true;
             do {
              switch (ferTemperatura) {
@@ -306,18 +344,31 @@ public class PE04 {
                             break;
                     }
                     System.out.println("Quina temperatura vols?");
-                    try{
-                    temperatura = entrada.nextInt();
-                    entrada.nextLine();
-                    }
-                    catch (InputMismatchException e) {
-                    System.out.println("Introdueix valors vàlids");
-                    entrada.nextLine();
-                    }
-                    catch (Exception e) {
-                    System.out.println("Error inesperat");
-                    entrada.nextLine();
-                    }
+                    
+                    boolean correcteTemperatura = false;
+                    do {
+                        correcteTemperatura = false;
+                        try {
+                            temperatura = entrada.nextInt();
+                            entrada.nextLine();
+                            correcteTemperatura = true;
+                            if (temperatura < 15 || temperatura > 30) {
+                            System.out.println("Introdueix una temperatura entre 15 °C i 30 °C");
+                            correcteTemperatura = false;
+                            } else {
+                            correcteTemperatura = true;
+                            }
+                        }
+                        catch (InputMismatchException e) {
+                            System.out.println("Introdueix valors vàlids");
+                            entrada.nextLine();
+                            
+                        }
+                        catch (Exception e) {
+                            System.out.println("Error inesperat");
+                            entrada.nextLine();
+                        }
+                    } while (!correcteTemperatura);
                     switch (triarhabitacio.toLowerCase()) {
                         
                     case "wc":
@@ -378,9 +429,75 @@ public class PE04 {
                 break;  
 
                 case "c":
+    boolean bucleTemp = true;
+    do {
+        System.out.println("Quina temperatura vols establir a totes les habitacions?");
+        boolean correcteTempGlobal = false;
+        do {
+            try {
+                temperatura = entrada.nextInt();
                 
-                break;
+                if (temperatura < 15 || temperatura > 30) {
+                    System.out.println("Introdueix una temperatura entre 15 °C i 30 °C");
+                } else {
+                    correcteTempGlobal = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Introdueix valors vàlids");
+                entrada.nextLine();
+            } catch (Exception e) {
+                System.out.println("Error inesperat");
+                entrada.nextLine();
+            }
+        } while (!correcteTempGlobal);
+        entrada.nextLine();
 
+        canviTemperatura("Cuina", tempCuina, temperatura);
+        canviTemperatura("Menjador", tempMenjador, temperatura);
+        canviTemperatura("Habitació 1", tempH1, temperatura);
+        canviTemperatura("Habitació 2", tempH2, temperatura);
+        canviTemperatura("Habitació 3", tempH3, temperatura);
+        canviTemperatura("WC", tempWC, temperatura);
+
+        tempCuina = temperatura;
+        tempMenjador = temperatura;
+        tempH1 = temperatura;
+        tempH2 = temperatura;
+        tempH3 = temperatura;
+        tempWC = temperatura;
+
+        System.out.println("S'ha establert la temperatura de totes les habitacions a " + temperatura + "ºC.");
+
+        String tempSiNo = "";
+        boolean respostaValida = false;
+
+        while (!respostaValida) {
+            try {
+                System.out.println("Vols sortir? (si/no)");
+                tempSiNo = entrada.nextLine();
+                if (tempSiNo.equalsIgnoreCase("si")) {
+                    bucleTemp = false;
+                    respostaValida = true;
+                    System.out.println("Tornant al menú de temperatura...");
+                    System.out.println();
+                } else if (tempSiNo.equalsIgnoreCase("no")) {
+                    respostaValida = true;
+                    System.out.println("D'acord, pots introduir una nova temperatura.");
+                    System.out.println();
+                } else {
+                    System.out.println("Posa només 'si' o 'no'");
+                }
+            } catch (Exception e) {
+                System.out.println("Error en la lectura. Torna-ho a provar.");
+                entrada.nextLine();
+            }
+        }
+    } while (bucleTemp);
+    menuTemperatura2 = false;
+    break;
+
+
+    
                 case "d":     
                 menuTemperatura2 = false;
                 menuTemperatura= false;
@@ -506,15 +623,21 @@ public class PE04 {
                         do {
         System.out.println("Amb quina habitació vols interactuar? (escriu exit per sortir)");
                         System.out.println("Cuina /Menjador /Habitacio1 /Habitacio2 / Habitacio3/ wc");
-                        try{
-                        triarhabitacio = entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        }
+                        boolean correcteTriarHabitacio = false;
+            do {
+                try {
+                    triarhabitacio = entrada.nextLine();
+                    correcteTriarHabitacio = true;
+                }
+                catch (InputMismatchException e) {
+                    System.out.println("Introdueix valors vàlids");
+                    entrada.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error inesperat");
+                    entrada.nextLine();
+                }
+            } while (!correcteTriarHabitacio);
                         if (triarhabitacio.equalsIgnoreCase("Cuina") ||
             triarhabitacio.equalsIgnoreCase("Menjador") ||
             triarhabitacio.equalsIgnoreCase("Habitacio1") ||
@@ -530,15 +653,21 @@ public class PE04 {
                     }    while (!menuChooseRoom);   
     }
     public static void menuMusica (String a) {
-        try {
-                        elementReproduir= entrada.nextLine();
-                        }
-                        catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        } 
+        boolean correcteElement = false;
+        do {
+            try {
+                elementReproduir = entrada.nextLine();
+                correcteElement = true;
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Introdueix valors vàlids");
+                entrada.nextLine();
+            }
+            catch (Exception e) {
+                System.out.println("Error inesperat");
+                entrada.nextLine();
+            } 
+        } while (!correcteElement);
                         System.out.println();
                         System.out.println("Està sonant " + a + " "+ elementReproduir + " a l'habitació "+ triarhabitacio);
     }
@@ -627,16 +756,22 @@ public static void timer() {
     boolean errorTemps = false;
     do {
         System.out.print("Itrodueix les hores: ");
+                boolean correcteHores = false;
+            do {
                 try {
-                tempsHores = entrada.nextInt();
-                entrada.nextLine();
+                    tempsHores = entrada.nextInt();
+                    entrada.nextLine();
+                    correcteHores = true;
                 }
                 catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        }
+                    System.out.println("Introdueix valors vàlids");
+                    entrada.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error inesperat");
+                    entrada.nextLine();
+                }
+            } while (!correcteHores);
                     if (tempsHores < 0 || tempsHores > 5) {
                         System.out.println("Escull entre 0 i 5 hores");
                         System.out.println();
@@ -648,16 +783,22 @@ public static void timer() {
     } while (errorTemps);
                 do {
                 System.out.print("El programa ara dura " + tempsHores + " hores, quants minuts mès vols? ");
+                boolean correcteMins = false;
+            do {
                 try {
-                tempsMins = entrada.nextInt();
-                entrada.nextLine();
+                    tempsMins = entrada.nextInt();
+                    entrada.nextLine();
+                    correcteMins = true;
                 }
                 catch (InputMismatchException e) {
-                        System.out.println("Introdueix valors vàlids");
-                        }
-                        catch (Exception e) {
-                        System.out.println("Error inesperat");
-                        }
+                    System.out.println("Introdueix valors vàlids");
+                    entrada.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error inesperat");
+                    entrada.nextLine();
+                }
+            } while (!correcteMins);
                     if (tempsMins < 0 || tempsMins >= 60) {
                         System.out.println("Escull entre 0 i 59 minuts");
                         System.out.println();
